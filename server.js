@@ -6,7 +6,7 @@ import { getDataByQueryParams } from './utils/getDataByQueryParams.js'
 
 const PORT = process.env.PORT || 8000
 
-const server = http.createServer(async (req, res) => {
+const requestHandler = async (req, res) => {
   const destinations = await getDataFromDB()
 
   const urlObj = new URL(req.url, `http://${req.headers.host}`)
@@ -41,6 +41,13 @@ const server = http.createServer(async (req, res) => {
     }))   
 
   }
-})
+}
 
-server.listen(PORT, () => console.log(`Connected on port: ${PORT}`))
+// For Vercel deployment
+export default requestHandler
+
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+  const server = http.createServer(requestHandler)
+  server.listen(PORT, () => console.log(`Connected on port: ${PORT}`))
+}

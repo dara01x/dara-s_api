@@ -26,4 +26,12 @@ GET /api/country/USA
 
 ## Live API
 
-This API is deployed and available at: [Your deployment URL will go here]
+This API is deployed on Vercel. Once you share your deployment URL, you can test these endpoints:
+
+- `GET /api` - Get all destinations
+- `GET /api/continent/{continent}` - Get destinations by continent  
+- `GET /api/country/{country}` - Get destinations by country
+
+## Deployment
+
+This API is deployed using Vercel for free hosting with automatic deployments from GitHub.
